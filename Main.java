@@ -1,31 +1,27 @@
 import java.io.*;
 import java.util.Scanner;
 
+
 class Main {
       public static void main(String[] args)throws IOException {
-        Scanner sc = new Scanner(System.in);
-        String nombre;
-        System.out.println("------- Proyecto 1 EDA -------");
-        System.out.println("Dame el nombre del archivo de caracteres");
-        nombre=sc.nextLine();
-        File doc = new File(nombre+".txt");
-        doc.createNewFile();
-        FileReader freader = new FileReader(doc);
-        char [] i = new char[999];
-        freader.read(i);
-        for(char j : i){
-                System.out.print(j);
-        }
-        freader.close();
-
+				char [] arch;
+        arch = caracteres();
 				menu();
+
+				System.out.print("------------ iubsekdjvbivkb ---------------");
+				for(char j : arch){
+					System.out.print(j);
+				}
   }
 
-	public static void menu(){
+
+
+  
+public static void menu(){
 		Scanner scMenu = new Scanner(System.in);
 					int opc;
 		do{
-			System.out.println("Bienvenido al Menu escoge una opcion para ordenar tu archivo: \n1.- Polifase \n2.- Mezcla equilibrada \n3.- Distribucion por Radix \n4.- Salir");
+			System.out.println("\nBienvenido al Menu escoge una opcion para ordenar tu archivo: \n1.- Polifase \n2.- Mezcla equilibrada \n3.- Distribucion por Radix \n4.- Salir");
 			opc = scMenu.nextInt();
 	
 			switch(opc){
@@ -46,5 +42,26 @@ class Main {
 					break;
 			}
 		}while(opc != 4);
+	}
+
+
+	public static char[] caracteres()throws IOException{
+	  Scanner sc = new Scanner(System.in);
+	  String nombre;
+	  System.out.println("------- Proyecto 1 EDA -------");
+	  System.out.println("Dame el nombre del archivo de caracteres");
+	  nombre=sc.nextLine();
+	  File doc = new File(nombre+".txt");
+	  doc.createNewFile();
+	  FileReader freader = new FileReader(doc);
+	  char [] i = new char[999];
+	  freader.read(i);
+	  
+    for(char j : i){
+	    System.out.print(j);
+	  }
+    
+	  freader.close();
+		return  i;
 	}
 }
