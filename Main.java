@@ -46,6 +46,7 @@ public static void menu(char[] arch){
 			}
 		}while(opc != 4);
 	}
+	//comentario para poder añaidrlo al control de versiones
 public static void mezclaEquilibrada(char[] arch){
 		
 		LinkedList<String> listaNombres = new LinkedList<String>();
