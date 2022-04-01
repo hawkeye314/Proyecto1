@@ -160,20 +160,25 @@ public static void mezclaEquilibrada(char[] arch){
 
 public static void claves() throws IOException{
     Scanner sc = new Scanner(System.in);
-    //RadixSort ordenamiento = new RadixSort();
-    String nombre; 
+    RadixSort ordenamiento = new RadixSort();
+    String nombre;
+    List<Integer> num1=new ArrayList<>();
     int num = 0;
     System.out.println("\nDame el nombre del archivo de claves");
     nombre=sc.nextLine();
     try(Scanner input = new Scanner(new File(nombre+".txt"))){
         input.useDelimiter("[,\\s]");
+        System.out.println("Claves en el archivo "+nombre+".txt");
         while(input.hasNextLine()){
             num = input.nextInt();
-            System.out.println(num);
+            num1.add(num);
+            System.out.println(num1);
         }
+        System.out.println("Numero de datos "+num1.size());
+        
         System.out.println("Ordenando con RadixSort");
-        ordenacionRadix(num);
-        imprimirVector(num);
+        ordenamiento.ordenacionRadix(num1);
+        ordenamiento.imprimirVector(num1);
     }catch (Exception e){
         e.printStackTrace();
     }
@@ -201,14 +206,14 @@ public static void claves() throws IOException{
 */
 }
   
-public static List<Integer> ordenacionRadix(int vec1){
+public static List<Integer> ordenacionRadix(List vec){
     int rep=1; //cantidad de repeticiones
     int numBytes=4; //número de bytes a desplazar
     int numColas=(int) Math.pow(2, numBytes);
     //Creación de las colas
     //int vec[];
-    List<Integer> vec=new ArrayList<>();
-    vec.add(vec1);
+    //List<Integer> vec=new ArrayList<>();
+    //vec.add(vec1);
     Queue[] cola=new LinkedList[numColas];
 
     for(int i=0;i<numColas;i++){
@@ -217,7 +222,8 @@ public static List<Integer> ordenacionRadix(int vec1){
     int div=0;
     for (int i = 0; i < rep; i++) {
         //En esta parte recorre el vector para guardar cada valor en la cola
-        for(int numero:vec){
+        //for(int numero:vec){
+        for(int numero=0;numero<vec.size();numero++){
                 //busca el mayor número del vector
                 if(i==0) if(numero>rep) rep=numero;
                 //Calcula en que cola debe de ir cada numero
@@ -241,15 +247,13 @@ public static List<Integer> ordenacionRadix(int vec1){
     return vec;
 }
 
-public static void imprimirVector(int vec1){
-    List<Integer> vec=new ArrayList<>();    
+
+public static void imprimirVector(List vec){    
     System.out.println(); 
-    vec.add(vec1);    
         for(int i=0;i<vec.size();i++){   
             System.out.print(vec.get(i)+" ");
         }
         System.out.println();
 }
-
   
 }
